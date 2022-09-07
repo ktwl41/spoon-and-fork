@@ -8,19 +8,14 @@ jobs:
     steps:
       - checkout
       - run: |
-          # earlier commit did not trigger again.
-          # explicitly made ktwl41 refresh permissions on CircleCI UI now.
-          # hoping this triggers now.
+          # refreshing the permissions of ktwl41 still did not trigger.
+          # will try removing the org context requirements.
           cat README.md
       - run: |
-          # check out the org context!
-          # should print 'spoon'
+          # should fail; no such env var injected
           printenv FORK
 
 workflows:
   main:
     jobs:
-      - checkout-org-context:
-          context:
-            # this org context is available for ALL_MEMBERS
-            - spoon-and-fork
+      - checkout-org-context

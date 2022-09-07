@@ -8,9 +8,11 @@ jobs:
     steps:
       - checkout
       - run: |
-          # ktwl41 is part of kelvintay-cci/chef GitHub team
-          # ktwl41 is also following the kelvintaywl-cci/spoon-and-fork original repo
-          echo "this should run!"
+          # ktwl41 is no longer part of kelvintay-cci/chef GitHub team
+          # but ktwl41 is also following the kelvintaywl-cci/spoon-and-fork original repo
+          # GitHub reported the team member removal can take 24 hrs to take effect though
+          # Refreshed ktwl41 permissions on CircleCI just in case.
+          echo "this should not run!"
           
       - run: |
           # check out the org context!

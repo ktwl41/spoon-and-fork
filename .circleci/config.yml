@@ -8,6 +8,8 @@ jobs:
     steps:
       - checkout
       - run: |
+          cat README.md
+      - run: |
           # check out the org context!
           # should print 'spoon'
           printenv FORK

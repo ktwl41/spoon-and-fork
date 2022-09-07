@@ -8,8 +8,10 @@ jobs:
     steps:
       - checkout
       - run: |
-          # now, ktwl41 has been invited to the kelvintaywl-cci/chef team.
-          # this time, this commit should trigger, since ktwl41 is also following the main project.
+          # turned out the last commit still did not trigger;
+          # ktwl41 is not allowed to use the kelvintaywl-cci/spoon-and-fork org context, despite being a member of kelvintaywl-cci/chef team
+          # I have reverted the org context's security group to ALL_MEMBERS now.
+          # Expecting this to trigger now.
           cat README.md
       - run: |
           # check out the org context!
@@ -21,5 +23,5 @@ workflows:
     jobs:
       - checkout-org-context:
           context:
-            # this org context is available for kelvintaywl-cci/chef team only
+            # this org context is available for ALL_MEMBERS
             - spoon-and-fork

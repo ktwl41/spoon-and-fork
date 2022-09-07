@@ -8,6 +8,11 @@ jobs:
     steps:
       - checkout
       - run: |
+          # ktwl41 is part of kelvintay-cci/chef GitHub team
+          # ktwl41 is also following the kelvintaywl-cci/spoon-and-fork original repo
+          echo "this should run!"
+          
+      - run: |
           # check out the org context!
           # should print 'spoon'
           printenv FORK
@@ -17,5 +22,5 @@ workflows:
     jobs:
       - checkout-org-context:
           context:
-            # this org context is available for ALL_MEMBERS of kelvintaywl-cci
+            # this org context is available for kelvintaywl-cci/chef team
             - spoon-and-fork

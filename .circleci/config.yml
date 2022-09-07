@@ -8,10 +8,9 @@ jobs:
     steps:
       - checkout
       - run: |
-          # turned out the last commit still did not trigger;
-          # ktwl41 is not allowed to use the kelvintaywl-cci/spoon-and-fork org context, despite being a member of kelvintaywl-cci/chef team
-          # I have reverted the org context's security group to ALL_MEMBERS now.
-          # Expecting this to trigger now.
+          # earlier commit did not trigger again.
+          # explicitly made ktwl41 refresh permissions on CircleCI UI now.
+          # hoping this triggers now.
           cat README.md
       - run: |
           # check out the org context!

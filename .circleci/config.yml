@@ -8,9 +8,8 @@ jobs:
     steps:
       - checkout
       - run: |
-          # ktwl41 is now invited to the original repo and has followed the main project
-          # however, the org context has been limited to kelvintaywl-cci/chef team
-          # which ktwl41 is not part of.
+          # now, ktwl41 has been invited to the kelvintaywl-cci/chef team.
+          # this time, this commit should trigger, since ktwl41 is also following the main project.
           cat README.md
       - run: |
           # check out the org context!

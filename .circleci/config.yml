@@ -8,6 +8,9 @@ jobs:
     steps:
       - checkout
       - run: |
+          # ktwl41 is now invited to the original repo and has followed the main project
+          # however, the org context has been limited to kelvintaywl-cci/chef team
+          # which ktwl41 is not part of.
           cat README.md
       - run: |
           # check out the org context!
@@ -19,5 +22,5 @@ workflows:
     jobs:
       - checkout-org-context:
           context:
-            # this org context is available for ALL_MEMBERS of kelvintaywl-cci
+            # this org context is available for kelvintaywl-cci/chef team only
             - spoon-and-fork

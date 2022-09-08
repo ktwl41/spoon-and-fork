@@ -8,18 +8,28 @@ executors:
 
 commands:
   my-checkout:
+    parameters:
+      use-cache:
+        type: boolean
+        default: false
     steps:
       - run: |
           git version
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}
-            - source-v1-
+      - when:
+          condition: << parameters.use-cache >>
+          steps:
+            - restore_cache:
+                keys:
+                  - source-v1-{{ .Branch }}
+                  - source-v1-
       - checkout
-      - save_cache:
-          key: source-v1-{{ .Branch }}
-          paths:
-            - ".git"
+      - when:
+          condition: << parameters.use-cache >>
+          steps:
+            - save_cache:
+                key: source-v1-{{ .Branch }}
+                paths:
+                  - ".git"
       - run: |
           ls -laH .
 
@@ -32,12 +42,22 @@ jobs:
           # check out the org context!
           # should print 'spoon'
           printenv FORK
-  custom-checkout:
+  checkout:
+    parameters:
+      use-cache:
+        type: boolean
+        default: false
     executor: basic
     steps:
-      - my-checkout
+      - my-checkout:
+          use-cache: << parameters.use-cache >>
 
 workflows:
   main:
     jobs:
-      - custom-checkout
+      - checkout:
+          matrix:
+            parameters:
+              use-cache:
+                - true
+                - false

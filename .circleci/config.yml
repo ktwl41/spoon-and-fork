@@ -1,21 +1,39 @@
 version: 2.1
 
-jobs:
-  checkout-org-context:
+executors:
+  basic:
     docker:
       - image: cimg/base:stable
-    resource_class:
+    resource_class: small
+
+commands:
+  my-checkout:
+    steps:
+      - restore_cache:
+          keys:
+            - source-v1-{{ .Branch }}
+            - source-v1-
+      - checkout
+      - save_cache:
+          key: source-v1-{{ .Branch }}
+          paths:
+            - ".git"
+
+jobs:
+  checkout-org-context:
+    executor: basic
     steps:
       - checkout
       - run: |
           # check out the org context!
           # should print 'spoon'
           printenv FORK
+  custom-checkout:
+    executor: basic
+    steps:
+      - my-checkout
 
 workflows:
   main:
     jobs:
-      - checkout-org-context:
-          context:
-            # this org context is available for ALL_MEMBERS of kelvintaywl-cci
-            - spoon-and-fork
+      - custom-checkout

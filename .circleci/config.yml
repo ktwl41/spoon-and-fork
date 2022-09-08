@@ -9,6 +9,8 @@ executors:
 commands:
   my-checkout:
     steps:
+      - run: |
+          git version
       - restore_cache:
           keys:
             - source-v1-{{ .Branch }}

@@ -20,6 +20,8 @@ commands:
           key: source-v1-{{ .Branch }}
           paths:
             - ".git"
+      - run: |
+          ls -laH .
 
 jobs:
   checkout-org-context:

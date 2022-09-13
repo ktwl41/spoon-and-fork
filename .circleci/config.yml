@@ -32,8 +32,14 @@ jobs:
     executor: basic
     steps:
       - my-checkout
-
+  on-forked-repo-only:
+    executor: basic
+    steps:
+      - checkout
+      - run: |
+          env | grep CIRCLE_
 workflows:
   main:
     jobs:
       - custom-checkout
+      - on-forked-repo-only

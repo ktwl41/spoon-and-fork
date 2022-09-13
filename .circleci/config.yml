@@ -26,14 +26,20 @@ jobs:
       - checkout
       - run: |
           # check out the org context!
-          # should print 'spoon'
+          # should print 'spoon', but masked
           printenv FORK
   custom-checkout:
     executor: basic
     steps:
       - my-checkout
-
+  on-forked-repo-only:
+    executor: basic
+    steps:
+      - checkout
+      - run: |
+          env | grep CIRCLE_
 workflows:
   main:
     jobs:
       - custom-checkout
+      - on-forked-repo-only

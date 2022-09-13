@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run: |
           # check out the org context!
-          # should print 'spoon'
+          # should print 'spoon', but masked
           printenv FORK
   custom-checkout:
     executor: basic
